@@ -5,3 +5,5 @@ class Rectangle:
 		self.x = 0
 		self.y = 0
 		
+	def getHeight(self):
+		return (self.height)

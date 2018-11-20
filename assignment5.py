@@ -1,5 +1,32 @@
 import sys
 from CustomCanvas import CustomCanvasMaker
+from rectpack import newPacker
+from Rectangle import *
+
+
+def pack(allRect, canvasSize):
+	allRectangles = allRect
+	print(allRectangles)
+	canvasSizeForBin = canvasSize
+	packer = newPacker()
+	for r in allRectangles:
+		packer.add_rect(*r)
+
+	bins = canvasSizeForBin
+	height = canvasSizeForBin[0]
+	width = canvasSizeForBin[1]
+	print("Where the pack is")
+	print(bins)
+
+	packer.add_bin(height,width)
+	packer.pack()
+
+	nbins = len(packer)
+	abin = packer[0]
+	height = abin.height
+	width = abin.width
+	nrect = len(packer[0])
+	print(nrect)
 
 if __name__ == "__main__":
 	#got a list object named files that contains the lines of the text file
@@ -28,10 +55,31 @@ if __name__ == "__main__":
 	heightOfCanvas = allVertex[0][0]
 	widthOfCanvas = allVertex[0][1]
 	print(heightOfCanvas)
-	print(heightOfCanvas)
+	print(widthOfCanvas)
 
+	#A list of the rectangle cordinates 
 	rectangleCoordinates = allVertex[1::]
 	print(rectangleCoordinates)
 
+	#now create the Rectangle objects for each rectangle coordinate
+
+	rectangleObjects = [] * len(rectangleCoordinates)
+	for y in rectangleCoordinates:
+		heightOfRectangle = y[0]
+		#print(heightOfRectangle)
+		widthOfRectangle = y[1]
+		#print(widthOfRectangle)
+		z = Rectangle(heightOfRectangle, widthOfRectangle, 0, 0)
+		rectangleObjects.append(z)
+		#print(z.getHeight)
+
+	print(rectangleObjects[0].getHeight())
+
+
 	#now create the canvas class and we might need to make a list of the heightOfCanvas and widthOfCanvas
-	canvas = CustomCanvasMaker(heightOfCanvas, heightOfCanvas)
+	#canvas = CustomCanvasMaker(heightOfCanvas, heightOfCanvas)
+	tupleOfCanvasSize = (heightOfCanvas, widthOfCanvas)
+	print(tupleOfCanvasSize)
+	pack(rectangleObjects, tupleOfCanvasSize)
+
+	
