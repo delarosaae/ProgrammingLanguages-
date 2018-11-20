@@ -1,4 +1,5 @@
 import sys
+from CustomCanvas import CustomCanvasMaker
 
 if __name__ == "__main__":
 	#got a list object named files that contains the lines of the text file
@@ -26,10 +27,11 @@ if __name__ == "__main__":
 	#now we will get the first two cordiniates for the canvas
 	heightOfCanvas = allVertex[0][0]
 	widthOfCanvas = allVertex[0][1]
-	print(height)
-	print(width)
+	print(heightOfCanvas)
+	print(heightOfCanvas)
 
 	rectangleCoordinates = allVertex[1::]
 	print(rectangleCoordinates)
 
-	now create the canvas class and we might need to make a list of the heightOfCanvas and widthOfCanvas
+	#now create the canvas class and we might need to make a list of the heightOfCanvas and widthOfCanvas
+	canvas = CustomCanvasMaker(heightOfCanvas, heightOfCanvas)
