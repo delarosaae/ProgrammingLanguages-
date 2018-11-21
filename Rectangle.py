@@ -7,3 +7,19 @@ class Rectangle:
 		
 	def getHeight(self):
 		return (self.height)
+
+
+	def getWidth(self):
+		return (self.width)
+
+	def setY(self, y):
+		self.y = y
+
+	def setX(self, x):
+		self.x = x
+
+	def getX(self):
+		return (self.x)
+
+	def getY(self):
+		return (self.y)
