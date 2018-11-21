@@ -9,30 +9,26 @@ def pack(allRect, canvasSize):
 
 
 	allRectangles = allRect
-	print(allRectangles)
 
 	listOfHeightAndWidth = [] * len(allRectangles)
 
 	for aR in allRectangles:
 		print(aR)
 		heightOfRectObj = aR.getHeight()
-		print(heightOfRectObj)
+		#print(heightOfRectObj)
 
 		widthOfRectObj = aR.getWidth()
-		print(widthOfRectObj)
+		#print(widthOfRectObj)
 
 		heightandWidthInAList = [heightOfRectObj, widthOfRectObj]
 
 		listOfHeightAndWidth.append(heightandWidthInAList)
 
-	print(listOfHeightAndWidth)
+	#print(listOfHeightAndWidth)
 	
 	packer = newPacker()
 	for r in listOfHeightAndWidth:
 		packer.add_rect(*r)
-
-
-
 
 	canvasSizeForBin = canvasSize
 	bins = canvasSizeForBin
@@ -47,24 +43,21 @@ def pack(allRect, canvasSize):
 	abin = packer[0]
 	height = abin.height
 	width = abin.width
-	nrect = len(packer[0])
-	print(nrect)
-
-
+	
 	rect = packer[0][0]
 	x = rect.x
 	y = rect.y
 	w = rect.width
 	h = rect.height
 
-	print("below will show us where to put things in")
+	#print("below will show us where to put things in")
 
 
 	CorrectVertex = [] * len(allRectangles)
 
 	all_rects = packer.rect_list()
 	for rect in all_rects:
-		print(rect)
+		#print(rect)
 		b,x,y,w,h,rid = rect
 
 		addAllTheVertex = [h,w,x,y]
@@ -75,7 +68,7 @@ def pack(allRect, canvasSize):
 		#print(x)
 		#print(y)
 		#print(rid)
-	print(CorrectVertex)
+	#print(CorrectVertex)
 
 
 
@@ -101,8 +94,40 @@ def pack(allRect, canvasSize):
 		finalY = changeObjects[3]
 
 		addRectObj = Rectangle(finalHeigh, finalWidth, finalX, finalY)
+		addRectObj.setX(finalX)
+		addRectObj.setY(finalY)
+		print("Here is the real high and width x and y")
+		print(finalHeigh)
+		print(finalWidth)
+		print(finalX)
+		print(finalY)
+
 		returnRectObjects.append(addRectObj)
-	return (returnRectObjects)
+
+		print()
+		print()
+		print()
+		print()
+		print("France France France France France ")
+
+
+	for returedObj in returnRectObjects:
+		h = returedObj.getHeight()
+		w = returedObj.getWidth()
+		x = returedObj.getX()
+		y = returedObj.getY()
+		print(h)
+		print(w)
+		print(x)
+		print(y)
+
+
+		print()
+		print()
+		print()
+		print()
+
+	return returnRectObjects
 
 
 
@@ -118,25 +143,11 @@ if __name__ == "__main__":
 	#we now have string literals, so we will need to parse them and make them int
 	with open(sys.argv[1], 'r') as file:
 		files = [line.strip() for line in file]
-	#print(files)
-
-
-
-
-
-
 
 
 	#make a list inside of a list where the inside list contains the the coordinates
 	#but first we make a list that has the number of spots that our file has
 	allVertex = [] * len(files)
-	
-
-
-
-
-
-
 
 
 	#now, we will loop the list files object and make
@@ -152,8 +163,6 @@ if __name__ == "__main__":
 		#get the second numberafter the comma
 		secondNumString = x[x.index(",") + 1:]
 		secondNumInt = int(secondNumString)
-		#print(secondNumString)
-
 
 
 		#make a list of them and add them to the list of vertex's
@@ -162,39 +171,16 @@ if __name__ == "__main__":
 
 
 
-	#take a look at the list	
-	print(allVertex)
-
-
-
-
-
-
-
 	#now we will get the first two cordiniates for the canvas
 	heightOfCanvas = allVertex[0][0]
 	widthOfCanvas = allVertex[0][1]
-	#take a look at the height of canvas and width
-	print(heightOfCanvas)
-	print(widthOfCanvas)
-
-
-
-
-
-
 
 
 	#A list of the rectangle cordinates 
 	rectangleCoordinates = allVertex[1::]
-	print(rectangleCoordinates)
-
-
-
 
 
 	#now create the Rectangle objects for each rectangle coordinate
-
 	rectangleObjects = [] * len(rectangleCoordinates)
 	for y in rectangleCoordinates:
 		heightOfRectangle = y[0]
@@ -208,17 +194,16 @@ if __name__ == "__main__":
 
 
 	#shows us how to get the height of the first rectangle object
-	print(rectangleObjects[0].getHeight())
-
-
-
-
-
+	#print(rectangleObjects[0].getHeight())
 
 	#now create the canvas class and we might need to make a list of the heightOfCanvas and widthOfCanvas
-	canvas = CustomCanvasMaker(heightOfCanvas, heightOfCanvas)
+	#canvas = CustomCanvasMaker(heightOfCanvas, heightOfCanvas)
 	tupleOfCanvasSize = (heightOfCanvas, widthOfCanvas)
-	print(tupleOfCanvasSize)
+	#print(tupleOfCanvasSize)
 	RectObjToPlaceInCanvas = pack(rectangleObjects, tupleOfCanvasSize)
+	
 
-	canvas.addRectangles(RectObjToPlaceInCanvas)
+
+	canvas = CustomCanvasMaker(heightOfCanvas, heightOfCanvas, RectObjToPlaceInCanvas)
+
+	

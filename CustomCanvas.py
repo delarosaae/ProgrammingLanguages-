@@ -4,34 +4,65 @@ from Rectangle import *
 window = Tk()
 
 
+
 class CustomCanvasMaker: 
-	def __init__(self, height, width):
+	def __init__(self, height, width, allRect):
 		self.height = height 
-		self.width = width
-		global canvas 
-		canvas = Canvas(window, height=self.height, width=self.width)
+		self.width = width 
+		
+		#create the canvas with the correct height and width
+		canvas = Canvas(window, height=self.height, width=self.width, bg="blue")
 
-		crect = canvas.create_rectangle(0, 50, 0, 50, outline="black")
+		self.allRect = allRect
 
+
+		allRect2 = self.allRect
+		
+
+		for allRectCoord in allRect2:
+			# this will get all the height, width, x, and y from each of our rectangles
+			heightOfRectObj = allRectCoord.getHeight()
+			widthOfRectObj = allRectCoord.getWidth()
+			x = allRectCoord.getX()
+			y = allRectCoord.getY()
+
+			#the bottom print calls are just to make sure that I was getting what I needed
+			#print(x)
+			#print(y)
+			#print(heightOfRectObj)
+			#print(widthOfRectObj)
+			#heightandWidthInAList = [heightOfRectObj, widthOfRectObj, x, y]
+			
+			#this will place the rectangles in the canvas
+			canvas.create_rectangle(x, y, heightOfRectObj + x, widthOfRectObj + y, outline="black")
+			
+
+
+		
 		canvas.pack()
 		window.mainloop()
+	
 
+
+		#this class will be called to get the rectangles and add them to the canvas
 	def addRectangles(self, allRect):
 		self.allRect = allRect
+		##self.canvas = canvas
 
 		allRect2 = self.allRect
 
 		for allRectCoord in allRect2:
-			#print(aR)
+			#pWill get the all the rectangle to place on canvas
 			heightOfRectObj = allRectCoord.getHeight()
-			print(heightOfRectObj)
+			
 
 			widthOfRectObj = allRectCoord.getWidth()
-			print(widthOfRectObj)
+#			print(widthOfRectObj)
 
 			x = allRectCoord.getX()
 			y = allRectCoord.getY()
 
-			#heightandWidthInAList = [heightOfRectObj, widthOfRectObj, x, y]
-			#crect = canvas.create_rectangle(x, heightOfRectObj, y, widthOfRectObj)
 			
+			x = self.canvas.create_rectangle(x, y, heightOfRectObj + x, widthOfRectObj + y, outline="black")
+
+
